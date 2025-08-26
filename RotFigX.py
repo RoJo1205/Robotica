@@ -37,10 +37,11 @@ def fix_system(axis_length, linewidth=5):
     y = [-axis_length, axis_length] 
     z = [-axis_length, axis_length]
     zp = [0, 0]
-    ax.plot3D(x, zp, zp, color='red', linewidth=linewidth)
-    ax.plot3D(zp, y, zp, color='blue',linewidth=linewidth)
-    ax.plot3D(zp, zp, z, color='green',linewidth=linewidth)
-    
+    ax.plot3D(x, zp, zp, color='red', label="X axis",linewidth=linewidth)
+    ax.plot3D(zp, y, zp, color='blue', label="Y axis",linewidth=linewidth)
+    ax.plot3D(zp, zp, z, color='green', label="Z axis",linewidth=linewidth)
+    ax.legend()
+
 
 def sind(t):
     # sind function
@@ -63,9 +64,9 @@ def cosd(t):
     return res
 
 
-def RotZ(t):
-    Rz = np.array(([cosd(t),-sind(t),0],[sind(t),cosd(t),0],[0,0,1]))
-    return Rz
+def RotX(t):
+    Rx = np.array(([1,0,0],[0,cosd(t),-sind(t)],[0,sind(t),cosd(t)]))
+    return Rx
 
 def drawVector(p_fin, p_init=[0,0,0], color='black',linewidth=1):
     deltaX = [p_init[0], p_fin[0]]
@@ -105,12 +106,12 @@ def drawScatter(point,color='black',marker='o'):
 
 def rotate_box(p1,p2,p3,p4,p5,p6,p7,p8,axis='z', angle = 0):
     rotation_matrix = 0
-    if axis=='x':
+    if axis=='z':
         pass
     if axis=='y':
         pass
-    if axis=='z':
-        rotation_matrix = RotZ(angle)
+    if axis=='x':
+        rotation_matrix = RotX(angle)
 
     p1_rot = rotation_matrix.dot(p1)
     p2_rot = rotation_matrix.dot(p2)
@@ -146,7 +147,7 @@ drawBox(p1_init, p2_init, p3_init, p4_init,
         p5_init, p6_init, p7_init, p8_init)
 
 [p1_rot, p2_rot, p3_rot, p4_rot, p5_rot, p6_rot, p7_rot, p8_rot] = rotate_box(p1_init, p2_init, p3_init, p4_init,
-        p5_init, p6_init, p7_init, p8_init,axis='z', angle = 15)
+        p5_init, p6_init, p7_init, p8_init,axis='x', angle = 30)
 
 
 drawBox(p1_rot, p2_rot, p3_rot, p4_rot, p5_rot, p6_rot, p7_rot, p8_rot,color='red')
