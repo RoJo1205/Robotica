@@ -65,7 +65,7 @@ def cosd(t):
 
 
 def RotZ(t):
-    Rz = np.array(([cosd(t),-sind(t),0],[sind(t),cosd(t),0],[0,0,1]))
+    Rz = np.array(([cosd(t),-sind(t),0,0],[sind(t),cosd(t),0,0],[0,0,1,0],[0,0,0,1]))
     return Rz
 
 def drawVector(p_fin, p_init=[0,0,0], color='black',linewidth=1):
@@ -77,7 +77,7 @@ def drawVector(p_fin, p_init=[0,0,0], color='black',linewidth=1):
 
 
 def drawBox(p1, p2, p3, p4, p5, p6, p7, p8, color = 'black'):
-
+    p1,p2,p3,p4,p5,p6,p7,p8 = [p[:3] for p in [p1,p2,p3,p4,p5,p6,p7,p8]]
     drawScatter(p1)
     drawScatter(p2)
     drawScatter(p3)
@@ -133,14 +133,15 @@ setaxis(-15,15,-15,15,-15,15)
 # plot the axis
 fix_system(10,1)
 
-p1_init = [0,0,0]
-p2_init = [7,0,0]
-p3_init = [7,0,3]
-p4_init = [0,0,3]
-p5_init = [0,2,0]
-p6_init = [7,2,0]
-p7_init = [7,2,3]
-p8_init = [0,2,3]
+p1_init = [0,0,0,0]
+p2_init = [7,0,0,0]
+p3_init = [7,0,3,0]
+p4_init = [0,0,3,0]
+p5_init = [0,2,0,0]
+p6_init = [7,2,0,0]
+p7_init = [7,2,3,0]
+p8_init = [0,2,3,0]
+
 
 
 drawBox(p1_init, p2_init, p3_init, p4_init,
