@@ -62,7 +62,7 @@ def plot_robot(ax, theta1, theta2, d3, theta4):
     L1 = 475.0
     L2 = 375.0 
     d1 = 418.5
-    d4_tool = 50.0   
+    d4_tool = 0   
 
     T0_1 = dh_matrix_modified(0, 0, d1, theta1)
     T1_2 = dh_matrix_modified(0, L1, 0, theta2)
